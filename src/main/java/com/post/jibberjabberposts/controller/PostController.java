@@ -5,6 +5,7 @@ import com.post.jibberjabberposts.dto.PostDto;
 import com.post.jibberjabberposts.dto.ReplyCreationDto;
 import com.post.jibberjabberposts.dto.ReplyDto;
 import com.post.jibberjabberposts.service.PostService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,7 +33,7 @@ public class PostController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<PostDto> getPostsByUser(@PathVariable("userId") UUID userId,
+    public Page<PostDto> getPostsByUser(@PathVariable("userId") UUID userId,
                                         @RequestParam(value = "page", defaultValue = "0") int page,
                                         @RequestParam(value = "size", defaultValue = "10") int size) {
         return postService.getPostsByUser(userId, page, size);

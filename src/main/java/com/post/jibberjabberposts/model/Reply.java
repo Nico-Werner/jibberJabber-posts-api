@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class Reply {
 
     @Id
+    @GeneratedValue
     private UUID id;
 
     private String content;

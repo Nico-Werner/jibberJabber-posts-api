@@ -7,6 +7,7 @@ import com.post.jibberjabberposts.model.Post;
 import com.post.jibberjabberposts.model.Reply;
 import com.post.jibberjabberposts.repository.PostRepository;
 import com.post.jibberjabberposts.service.PostService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -42,12 +43,10 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getPostsByUser(UUID userId, int page, int size) {
+    public Page<PostDto> getPostsByUser(UUID userId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        List<Post> posts = postRepository.findAllByAuthorId(userId, pageable);
-        List<PostDto> postDtos = new ArrayList<>();
-        posts.forEach(post -> postDtos.add(PostDto.from(post)));
-        return postDtos;
+        Page<Post> posts = postRepository.findAllByAuthorId(userId, pageable);
+        return posts.map(PostDto::from);
     }
 
     @Override
