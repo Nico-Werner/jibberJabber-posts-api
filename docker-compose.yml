@@ -2,7 +2,7 @@ version: '3'
 
 services:
   api:
-    container_name: "compose-api"
+    container_name: "post-api"
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,7 +16,7 @@ services:
       DB_PORT: 5432
 
   db:
-    container_name: postgres_db
+    container_name: post_db
     image: postgres:12
     ports:
       - 5433:5432
@@ -25,8 +25,8 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: compose-db
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - postdata:/var/lib/postgresql/data
 
 volumes:
   pgdata:
-    external: false
+    external: true
