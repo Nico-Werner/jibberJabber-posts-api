@@ -6,5 +6,5 @@
 FROM openjdk:17-alpine
 EXPOSE 8080
 RUN mkdir /app
-COPY build/libs/jibber-jabber-posts-0.0.1-SNAPSHOT-plain.jar /app/JibberJabberPostsApplication.jar
+COPY build/libs/jibber-jabber-posts-0.0.1-SNAPSHOT.jar /app/JibberJabberPostsApplication.jar
 ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=production","/app/JibberJabberPostsApplication.jar"]
