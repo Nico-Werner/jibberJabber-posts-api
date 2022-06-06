@@ -66,4 +66,11 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
         postRepository.delete(post);
     }
+
+    @Override
+    public Page<PostDto> getAllPosts(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Post> posts = postRepository.findAll(pageable);
+        return posts.map(PostDto::from);
+    }
 }

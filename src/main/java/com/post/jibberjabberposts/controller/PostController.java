@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -37,6 +36,12 @@ public class PostController {
                                         @RequestParam(value = "page", defaultValue = "0") int page,
                                         @RequestParam(value = "size", defaultValue = "10") int size) {
         return postService.getPostsByUser(userId, page, size);
+    }
+
+    @GetMapping("")
+    public Page<PostDto> getAllPosts(@RequestParam(value = "page", defaultValue = "0") int page,
+                                     @RequestParam(value = "size", defaultValue = "10") int size) {
+        return postService.getAllPosts(page, size);
     }
 
     @PostMapping("/{postId}/reply")

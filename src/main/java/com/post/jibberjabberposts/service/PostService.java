@@ -19,4 +19,6 @@ public interface PostService {
     PostDto createReply(UUID postId, ReplyCreationDto replyCreationDto);
 
     void deletePost(UUID postId);
+
+    Page<PostDto> getAllPosts(int page, int size);
 }
