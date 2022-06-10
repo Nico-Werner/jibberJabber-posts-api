@@ -3,7 +3,6 @@ package com.post.jibberjabberposts.controller;
 import com.post.jibberjabberposts.dto.PostCreationDto;
 import com.post.jibberjabberposts.dto.PostDto;
 import com.post.jibberjabberposts.dto.ReplyCreationDto;
-import com.post.jibberjabberposts.dto.ReplyDto;
 import com.post.jibberjabberposts.service.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;

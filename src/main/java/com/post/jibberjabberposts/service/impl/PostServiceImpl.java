@@ -15,11 +15,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @Service
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+
+    private final Logger logger = Logger.getLogger(PostServiceImpl.class.getName());
 
     public PostServiceImpl(PostRepository postRepository) {
         this.postRepository = postRepository;
@@ -32,7 +35,9 @@ public class PostServiceImpl implements PostService {
                 .authorId(postCreationDto.getAuthorId())
                 .replies(new ArrayList<>())
                 .build();
+        logger.info("New Post Started");
         post = postRepository.save(post);
+        logger.info("User " + post.getAuthorId() + " has posted: " + post.getId());
         return PostDto.from(post);
     }
 
@@ -57,14 +62,18 @@ public class PostServiceImpl implements PostService {
                 .authorId(replyCreationDto.getAuthorId())
                 .build();
         post.getReplies().add(reply);
+        logger.info("New Reply");
         post = postRepository.save(post);
+        logger.info("User " + reply.getAuthorId() + " has replied to post " + post.getId());
         return PostDto.from(post);
     }
 
     @Override
     public void deletePost(UUID postId) {
+        logger.info("Deleting Post: " + postId);
         Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
         postRepository.delete(post);
+        logger.info("Post deleted");
     }
 
     @Override
