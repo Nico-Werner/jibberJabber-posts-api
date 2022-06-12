@@ -20,7 +20,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("")
+    @PostMapping("/")
     public PostDto createPost(@RequestBody PostCreationDto postCreationDto) {
         return postService.createPost(postCreationDto);
     }
