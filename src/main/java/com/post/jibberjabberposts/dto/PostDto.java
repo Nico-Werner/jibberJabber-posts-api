@@ -13,7 +13,7 @@ public class PostDto {
 
     private UUID id;
 
-    private String content;
+    private String text;
 
     private UserDto user;
 
@@ -22,7 +22,7 @@ public class PostDto {
     public static PostDto from(Post post) {
         return PostDto.builder()
                 .id(post.getId())
-                .content(post.getContent())
+                .text(post.getContent())
                 .user(UserDto.from(post.getUser()))
                 .replies(ReplyDto.from(post.getReplies()))
                 .build();
