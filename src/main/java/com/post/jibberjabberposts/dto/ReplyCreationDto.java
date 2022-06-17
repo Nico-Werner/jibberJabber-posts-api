@@ -11,9 +11,9 @@ import java.util.UUID;
 public class ReplyCreationDto {
 
     @NotNull
-    private String content;
+    private String text;
 
     @NotNull
-    private UUID authorId;
+    private UserDto user;
 
 }
