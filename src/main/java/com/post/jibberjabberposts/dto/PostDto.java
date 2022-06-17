@@ -15,7 +15,7 @@ public class PostDto {
 
     private String content;
 
-    private UUID authorId;
+    private UserDto user;
 
     private List<ReplyDto> replies;
 
@@ -23,7 +23,7 @@ public class PostDto {
         return PostDto.builder()
                 .id(post.getId())
                 .content(post.getContent())
-                .authorId(post.getUser().getId())
+                .user(UserDto.from(post.getUser()))
                 .replies(ReplyDto.from(post.getReplies()))
                 .build();
     }
