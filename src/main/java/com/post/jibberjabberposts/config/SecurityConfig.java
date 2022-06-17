@@ -32,7 +32,7 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/post/*", "/user/*")
+                .antMatchers("/post/*")
                 .hasAnyRole("jj-user", "jj-admin")
                 .anyRequest()
                 .permitAll();
