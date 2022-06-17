@@ -38,17 +38,17 @@ public class PostServiceImpl implements PostService {
         if(user == null) {
             throw new IllegalArgumentException("User not found");
         }
-        if(user.getId() != postCreationDto.getAuthorId()) {
+        if(user.getId() != postCreationDto.getUser().getId()) {
             throw new IllegalArgumentException("User cannot create post for other user");
         }
         Post post = Post.builder()
                 .content(postCreationDto.getContent())
-                .authorId(postCreationDto.getAuthorId())
+                .user(user)
                 .replies(new ArrayList<>())
                 .build();
         logger.info("New Post Started");
         post = postRepository.save(post);
-        logger.info("User " + post.getAuthorId() + " has posted: " + post.getId());
+        logger.info("User " + post.getUser().getId() + " has posted: " + post.getId());
         return PostDto.from(post);
     }
 
@@ -65,7 +65,7 @@ public class PostServiceImpl implements PostService {
             throw new IllegalArgumentException("User not found");
         } else {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Post> posts = postRepository.findAllByAuthorId(userId, pageable);
+            Page<Post> posts = postRepository.findAllByUserId(userId, pageable);
             return posts.map(PostDto::from);
         }
     }
@@ -99,7 +99,7 @@ public class PostServiceImpl implements PostService {
         if(user == null) {
             throw new IllegalArgumentException("User not found");
         }
-        if(user.getId() != post.getAuthorId()) {
+        if(user.getId() != post.getUser().getId()) {
             throw new IllegalArgumentException("User cannot delete post for other user");
         }
         postRepository.delete(post);

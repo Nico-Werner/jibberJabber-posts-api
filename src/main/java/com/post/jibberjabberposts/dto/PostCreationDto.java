@@ -12,6 +12,6 @@ public class PostCreationDto {
     private String content;
 
     @NotNull
-    private UUID authorId;
+    private UserDto user;
 
 }

@@ -22,7 +22,8 @@ public class Post {
 
     private String content;
 
-    private UUID authorId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reply> replies;

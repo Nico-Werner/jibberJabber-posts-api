@@ -23,7 +23,7 @@ public class PostDto {
         return PostDto.builder()
                 .id(post.getId())
                 .content(post.getContent())
-                .authorId(post.getAuthorId())
+                .authorId(post.getUser().getId())
                 .replies(ReplyDto.from(post.getReplies()))
                 .build();
     }
