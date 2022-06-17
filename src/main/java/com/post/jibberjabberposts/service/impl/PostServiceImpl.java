@@ -73,12 +73,9 @@ public class PostServiceImpl implements PostService {
         if(user == null) {
             throw new IllegalArgumentException("User not found");
         }
-        if(user.getId() != replyCreationDto.getAuthorId()) {
-            throw new IllegalArgumentException("User cannot create reply for other user");
-        }
         Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
         Reply reply = Reply.builder()
-                .content(replyCreationDto.getContent())
+                .content(replyCreationDto.getText())
                 .user(user)
                 .build();
         post.getReplies().add(reply);
