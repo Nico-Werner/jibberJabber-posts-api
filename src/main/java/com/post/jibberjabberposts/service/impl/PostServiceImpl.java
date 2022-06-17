@@ -79,12 +79,12 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
         Reply reply = Reply.builder()
                 .content(replyCreationDto.getContent())
-                .authorId(user.getId())
+                .user(user)
                 .build();
         post.getReplies().add(reply);
         logger.info("New Reply");
         post = postRepository.save(post);
-        logger.info("User " + reply.getAuthorId() + " has replied to post " + post.getId());
+        logger.info("User " + reply.getUser().getId() + " has replied to post " + post.getId());
         return PostDto.from(post);
     }
 

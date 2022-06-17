@@ -17,14 +17,14 @@ public class PostDto {
 
     private UserDto user;
 
-    private List<ReplyDto> replies;
+    private List<ReplyDto> thread;
 
     public static PostDto from(Post post) {
         return PostDto.builder()
                 .id(post.getId())
                 .text(post.getContent())
                 .user(UserDto.from(post.getUser()))
-                .replies(ReplyDto.from(post.getReplies()))
+                .thread(ReplyDto.from(post.getReplies()))
                 .build();
     }
 }

@@ -14,16 +14,18 @@ public class ReplyDto {
 
     private UUID id;
 
-    private String content;
+    private String text;
 
-    private UUID authorId;
+    private UserDto user;
+
+    private List<ReplyDto> thread;
 
     public static List<ReplyDto> from(List<Reply> replies) {
         List<ReplyDto> replyDto = new ArrayList<>();
         replies.forEach(reply -> replyDto.add(ReplyDto.builder()
                 .id(reply.getId())
-                .content(reply.getContent())
-                .authorId(reply.getAuthorId())
+                .text(reply.getContent())
+                .user(UserDto.from(reply.getUser()))
                 .build()));
         return replyDto;
     }
