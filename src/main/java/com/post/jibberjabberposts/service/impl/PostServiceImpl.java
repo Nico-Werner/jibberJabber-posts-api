@@ -7,7 +7,6 @@ import com.post.jibberjabberposts.model.Post;
 import com.post.jibberjabberposts.model.Reply;
 import com.post.jibberjabberposts.model.User;
 import com.post.jibberjabberposts.repository.PostRepository;
-import com.post.jibberjabberposts.repository.UserRepository;
 import com.post.jibberjabberposts.service.PostService;
 import com.post.jibberjabberposts.service.UserService;
 import org.springframework.data.domain.Page;
@@ -16,8 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 
