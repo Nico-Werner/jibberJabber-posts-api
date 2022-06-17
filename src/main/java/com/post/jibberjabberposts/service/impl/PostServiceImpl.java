@@ -42,7 +42,7 @@ public class PostServiceImpl implements PostService {
             throw new IllegalArgumentException("User cannot create post for other user");
         }
         Post post = Post.builder()
-                .content(postCreationDto.getContent())
+                .content(postCreationDto.getText())
                 .user(user)
                 .replies(new ArrayList<>())
                 .build();
