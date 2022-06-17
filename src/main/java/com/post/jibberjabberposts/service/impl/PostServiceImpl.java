@@ -38,9 +38,6 @@ public class PostServiceImpl implements PostService {
         if(user == null) {
             throw new IllegalArgumentException("User not found");
         }
-        if(user.getId() != postCreationDto.getUser().getId()) {
-            throw new IllegalArgumentException("User cannot create post for other user");
-        }
         Post post = Post.builder()
                 .content(postCreationDto.getText())
                 .user(user)
