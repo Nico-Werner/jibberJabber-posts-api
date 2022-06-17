@@ -23,7 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     @Timed
     public ResponseEntity<?> getLoggedUser() {
         UserDto user = userService.getLoggedUser();
