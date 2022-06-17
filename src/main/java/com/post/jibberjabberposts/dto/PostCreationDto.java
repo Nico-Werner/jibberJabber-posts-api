@@ -9,7 +9,7 @@ import java.util.UUID;
 public class PostCreationDto {
 
     @NotNull
-    private String content;
+    private String text;
 
     @NotNull
     private UserDto user;
