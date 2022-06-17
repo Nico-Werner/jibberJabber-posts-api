@@ -10,6 +10,7 @@ import org.keycloak.representations.AccessToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -40,8 +41,17 @@ public class UserServiceImpl implements UserService {
         AccessToken accessToken = session.getToken();
         String username = accessToken.getPreferredUsername();
 
-        User user = userRepository.findByUsername(username);
-        return user;
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            User newUser = User.builder()
+                    .id(UUID.randomUUID())
+                    .username(username)
+                    .displayName(username)
+                    .bio("")
+                    .build();
+            return userRepository.save(newUser);
+        }
+        return user.get();
     }
 
     @Override
